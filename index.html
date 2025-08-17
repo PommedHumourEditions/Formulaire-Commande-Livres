@@ -173,12 +173,28 @@
         overflow: hidden;
         border: 2px solid #bdc3c7;
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        background: #f0f0f0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .book-cover img {
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+
+    .book-cover-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 10px;
+        color: #666;
+        text-align: center;
+        background: #e9ecef;
     }
 
     .book-info {
@@ -423,7 +439,13 @@
             <div class="book-item">
                 <div class="book-content">
                     <div class="book-cover">
-                        <div style="background: linear-gradient(135deg, #4FD1A4 0%, #2e9982 100%); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; background-image: url('data:image/svg+xml;utf8,<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 120 160\"><rect width=\"120\" height=\"160\" fill=\"%234FD1A4\"/><circle cx=\"30\" cy=\"60\" r=\"15\" fill=\"%23fff\" opacity=\"0.3\"/><circle cx=\"90\" cy=\"100\" r=\"10\" fill=\"%23fff\" opacity=\"0.2\"/><text x=\"60\" y=\"80\" font-family=\"Arial\" font-size=\"12\" font-weight=\"bold\" fill=\"white\" text-anchor=\"middle\">MAIMBIYO</text><text x=\"60\" y=\"110\" font-family=\"Arial\" font-size=\"8\" fill=\"%23333\" text-anchor=\"middle\">Comptines de Koko</text><text x=\"60\" y=\"125\" font-family=\"Arial\" font-size=\"8\" fill=\"%23333\" text-anchor=\"middle\">et de Carda&apos;môme</text></svg>');">
+                        <div class="book-cover-placeholder">
+                            <div style="text-align: center; padding: 10px;">
+                                <div style="font-weight: bold; font-size: 12px; color: #2c3e50; margin-bottom: 5px;">MAIMBIYO</div>
+                                <div style="font-size: 8px; color: #666;">Comptines de Koko</div>
+                                <div style="font-size: 8px; color: #666;">et de Carda'môme</div>
+                                <div style="margin-top: 10px; padding: 3px 6px; background: #4FD1A4; color: white; border-radius: 3px; font-size: 7px;">LIVRE MUSICAL</div>
+                            </div>
                         </div>
                     </div>
                     <div class="book-info">
@@ -443,12 +465,13 @@
             <div class="book-item">
                 <div class="book-content">
                     <div class="book-cover">
-                        <div style="background: linear-gradient(135deg, #68DB6E 0%, #2cae60 100%); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                            <div style="position: absolute; top: 10px; left: 10px; width: 100px; height: 20px; background: rgba(255,255,255,0.2); border-radius: 10px;"></div>
-                            <div style="color: white; font-weight: bold; font-size: 11px; text-align: center; margin-top: 20px;">IDI MBARAKA!</div>
-                            <div style="color: #333; font-size: 8px; text-align: center; margin-top: 40px;">La Ide de Mwezi</div>
-                            <div style="color: #333; font-size: 8px; text-align: center;">et Nyora</div>
-                            <div style="position: absolute; bottom: 20px; width: 80px; height: 60px; background: rgba(255,255,255,0.1); border-radius: 5px;"></div>
+                        <div class="book-cover-placeholder">
+                            <div style="text-align: center; padding: 10px;">
+                                <div style="font-weight: bold; font-size: 11px; color: #2c3e50; margin-bottom: 5px;">IDI MBARAKA!</div>
+                                <div style="font-size: 8px; color: #666; margin-top: 15px;">La Ide de Mwezi</div>
+                                <div style="font-size: 8px; color: #666;">et Nyora</div>
+                                <div style="margin-top: 15px; width: 30px; height: 20px; background: #68DB6E; border-radius: 3px; margin: 15px auto 0;"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="book-info">
@@ -468,13 +491,15 @@
             <div class="book-item">
                 <div class="book-content">
                     <div class="book-cover">
-                        <div style="background: linear-gradient(135deg, #FFDB54 0%, #FF9800 100%); width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                            <div style="position: absolute; top: 15px; left: 15px; color: #2c3e50; font-size: 7px; font-weight: bold;">DE 0 À 12&4 MOIS</div>
-                            <div style="color: #8B4513; font-weight: bold; font-size: 12px; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">DJIMBO NA</div>
-                            <div style="color: #8B4513; font-weight: bold; font-size: 12px; text-align: center; text-shadow: 1px 1px 2px rgba(0,0,0,0.3);">COMPTINES</div>
-                            <div style="color: #333; font-size: 7px; text-align: center; margin-top: 30px;">Na ri heze ri</div>
-                            <div style="color: #333; font-size: 7px; text-align: center;">fundishiye ye lugha</div>
-                            <div style="position: absolute; bottom: 15px; right: 15px; width: 20px; height: 20px; background: rgba(139, 69, 19, 0.3); border-radius: 50%;"></div>
+                        <div class="book-cover-placeholder">
+                            <div style="text-align: center; padding: 8px;">
+                                <div style="font-size: 6px; color: #666; margin-bottom: 5px;">DE 0 À 12&4 MOIS</div>
+                                <div style="font-weight: bold; font-size: 10px; color: #2c3e50; margin-bottom: 3px;">DJIMBO NA</div>
+                                <div style="font-weight: bold; font-size: 10px; color: #2c3e50; margin-bottom: 10px;">COMPTINES</div>
+                                <div style="font-size: 7px; color: #666;">Na ri heze ri</div>
+                                <div style="font-size: 7px; color: #666;">fundishiye ye lugha</div>
+                                <div style="margin-top: 10px; width: 20px; height: 20px; background: #FFDB54; border-radius: 50%; margin: 10px auto 0;"></div>
+                            </div>
                         </div>
                     </div>
                     <div class="book-info">
