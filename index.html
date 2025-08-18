@@ -714,24 +714,24 @@
             }
         }
 
-        // Gestion de la désactivation du point relais selon le mode de paiement
+        // Gestion de l'affichage du point relais selon le mode de paiement
         function toggleRelaisOption() {
-            const especesPayment = document.querySelector('input[name="payment"][value="especes"]');
+            const mvolaPayment = document.querySelector('input[name="payment"][value="mvola"]');
+            const moneyTransferPayment = document.querySelector('input[name="payment"][value="money-transfer"]');
             const relaisOption = document.getElementById('relaisOption');
             const relaisInput = document.querySelector('input[name="delivery"][value="relais"]');
             
-            if (especesPayment && especesPayment.checked) {
-                // Désactiver l'option point relais
-                relaisOption.classList.add('disabled');
-                relaisInput.disabled = true;
+            // Afficher point relais seulement si Mvola ou MoneyGram/Western Union est sélectionné
+            if ((mvolaPayment && mvolaPayment.checked) || (moneyTransferPayment && moneyTransferPayment.checked)) {
+                relaisOption.style.display = 'flex';
+                relaisInput.required = true;
+            } else {
+                relaisOption.style.display = 'none';
+                relaisInput.required = false;
                 // Si point relais était sélectionné, le désélectionner
                 if (relaisInput.checked) {
                     relaisInput.checked = false;
                 }
-            } else {
-                // Réactiver l'option point relais
-                relaisOption.classList.remove('disabled');
-                relaisInput.disabled = false;
             }
         }
         function toggleAddressField() {
