@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
@@ -703,10 +704,8 @@
             // Afficher point relais seulement si Mvola ou MoneyGram/Western Union est sélectionné
             if ((mvolaPayment && mvolaPayment.checked) || (moneyTransferPayment && moneyTransferPayment.checked)) {
                 relaisOption.style.display = 'flex';
-                relaisInput.required = true;
             } else {
                 relaisOption.style.display = 'none';
-                relaisInput.required = false;
                 // Si point relais était sélectionné, le désélectionner
                 if (relaisInput.checked) {
                     relaisInput.checked = false;
@@ -771,4 +770,48 @@
             document.getElementById('hiddenDetails').value = orderDetails;
             
             // Vérifier qu'au moins un livre est commandé
-            if (grandTotal === 0)
+            if (grandTotal === 0) {
+                alert('Veuillez sélectionner au moins un livre avant de finaliser la commande.');
+                return false;
+            }
+            
+            // Soumettre le formulaire
+            e.target.submit();
+        }
+
+        // Event listeners
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mise à jour des prix lors du changement de devise
+            document.querySelectorAll('input[name="currency"]').forEach(radio => {
+                radio.addEventListener('change', updatePrices);
+            });
+
+            // Calcul des totaux lors du changement de quantité
+            for (let i = 1; i <= 3; i++) {
+                document.getElementById(`qty${i}`).addEventListener('input', calculateTotals);
+            }
+
+            // Gestion de l'affichage du point relais selon le mode de paiement
+            document.querySelectorAll('input[name="payment"]').forEach(radio => {
+                radio.addEventListener('change', toggleRelaisOption);
+            });
+
+            // Gestion du champ adresse selon le mode de livraison
+            document.querySelectorAll('input[name="delivery"]').forEach(radio => {
+                radio.addEventListener('change', toggleAddressField);
+            });
+
+            // Gestion du champ "Autre" pour la découverte
+            document.querySelectorAll('input[name="discovery"]').forEach(radio => {
+                radio.addEventListener('change', toggleAutreField);
+            });
+
+            // Gestion de la soumission du formulaire
+            document.getElementById('bookOrderForm').addEventListener('submit', handleSubmit);
+
+            // Calculs initiaux
+            updatePrices();
+        });
+    </script>
+</body>
+</html>
