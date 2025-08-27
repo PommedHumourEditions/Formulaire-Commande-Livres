@@ -429,7 +429,7 @@
 
         <!-- Sélection de devise -->
         <div class="currency-selector">
-            <h3>💱 Devise de commande</h3>
+            <h3>💱 Devise préférée</h3>
             <div class="currency-options">
                 <div class="currency-option">
                     <input type="radio" id="kmf" name="currency" value="KMF" checked>
@@ -634,7 +634,7 @@
         <input type="hidden" name="total_commande" id="hiddenTotal">
         <input type="hidden" name="detail_commande" id="hiddenDetails">
 
-        <button type="submit" class="submit-btn">📝 Finaliser la commande</button>
+        <button type="submit" class="submit-btn">📝 Finaliser la pré-commande</button>
     </form>
 </div>
 
@@ -689,7 +689,7 @@
         const submitBtn = document.querySelector('.submit-btn');
         if (grandTotal > 0) {
             submitBtn.disabled = false;
-            submitBtn.textContent = '📝 Finaliser la commande';
+            submitBtn.textContent = '📝 Finaliser la pré-commande';
         } else {
             submitBtn.disabled = true;
             submitBtn.textContent = 'Sélectionnez au moins un livre';
