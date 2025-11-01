@@ -48,6 +48,15 @@
         opacity: 0.9;
     }
 
+    .preorder-notice {
+        background: #fff3cd;
+        color: #856404;
+        padding: 15px 20px;
+        margin: 20px;
+        border-radius: 10px;
+        border-left: 4px solid #ffc107;
+    }
+
     .form-content {
         padding: 40px;
     }
@@ -403,10 +412,11 @@
             <h1>📚 Formulaire de pré-commande</h1>
             <p>Réservez vos exemplaires et choisissez votre devise préférée</p>
         </div>
-        
-        <div class="preorder-notice">
-            ℹ️ <strong>Information importante :</strong> Les paiements et livraisons se feront dès l'arrivée des ouvrages en France.
-        </div>
+
+```
+    <div class="preorder-notice">
+        ℹ️ <strong>Information importante :</strong> Les paiements et livraisons se feront dès l'arrivée des ouvrages en France.
+    </div>
 
     <form class="form-content" id="bookOrderForm" action="https://formspree.io/f/mrbldvrl" method="POST">
         
@@ -424,6 +434,10 @@
             <div class="form-group">
                 <label for="customerPhone">Téléphone</label>
                 <input type="tel" id="customerPhone" name="telephone">
+            </div>
+            <div class="form-group">
+                <label for="customerAddress">Adresse de livraison complète *</label>
+                <textarea id="customerAddress" name="adresse" required placeholder="Veuillez indiquer votre adresse complète pour la livraison (rue, ville, code postal, pays...)"></textarea>
             </div>
         </div>
 
@@ -508,7 +522,7 @@
             <div class="total-amount" id="totalAmount">0 KMF</div>
         </div>
 
-        <!-- MODE DE PAIEMENT EN PREMIER -->
+        <!-- MODE DE PAIEMENT -->
         <div class="customer-info">
             <h3>💳 Mode de paiement souhaité</h3>
             <div class="form-group">
@@ -529,31 +543,6 @@
                         💰 PayPal
                     </label>
                 </div>
-            </div>
-        </div>
-
-        <!-- MODE DE LIVRAISON EN SECOND (SUPPRESSION DE LA LIBRAIRIE MORONI) -->
-        <div class="customer-info">
-            <h3>🚚 Mode de livraison souhaité</h3>
-            <div class="form-group">
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="delivery" value="postal" required>
-                        <span class="radio-custom"></span>
-                        📮 Envoi postal
-                    </label>
-                    <label class="radio-option" id="relaisOption">
-                        <input type="radio" name="delivery" value="relais" required>
-                        <span class="radio-custom"></span>
-                        📍 Récupérer dans un point relais (Paris 20ème)
-                    </label>
-                </div>
-            </div>
-            
-            <!-- Champ adresse qui s'affiche uniquement pour l'envoi postal -->
-            <div class="form-group" id="addressField" style="display: none; margin-top: 20px;">
-                <label for="customerAddress">Adresse de livraison complète *</label>
-                <textarea id="customerAddress" name="adresse" required placeholder="Veuillez indiquer votre adresse complète pour la livraison postal (rue, ville, code postal, pays...)"></textarea>
             </div>
         </div>
 
@@ -639,14 +628,12 @@
 </div>
 
 <script>
-    // Prix des livres
     const books = {
         1: { titleFR: 'MAIMBIYO', kmf: 13500, eur: 27.50 },
         2: { titleFR: 'IDI MBARAKA', kmf: 6000, eur: 12.50 },
         3: { titleFR: 'DJIMBO NA COMPTINES', kmf: 11000, eur: 22 }
     };
 
-    // Formatage des nombres
     function formatPrice(price, currency) {
         if (currency === 'KMF') {
             return new Intl.NumberFormat('fr-FR').format(price) + ' KMF';
@@ -655,7 +642,6 @@
         }
     }
 
-    // Mise à jour des prix selon la devise
     function updatePrices() {
         const currency = document.querySelector('input[name="currency"]:checked').value;
         
@@ -667,7 +653,6 @@
         calculateTotals();
     }
 
-    // Calcul des totaux
     function calculateTotals() {
         const currency = document.querySelector('input[name="currency"]:checked').value;
         let grandTotal = 0;
@@ -685,7 +670,6 @@
 
         document.getElementById('totalAmount').textContent = formatPrice(grandTotal, currency);
         
-        // Activer/désactiver le bouton selon le total
         const submitBtn = document.querySelector('.submit-btn');
         if (grandTotal > 0) {
             submitBtn.disabled = false;
@@ -696,36 +680,17 @@
         }
     }
 
-    // Gestion du champ téléphone selon le mode de contact
     function togglePhoneField() {
         const phoneContact = document.querySelector('input[name="contact"][value="telephone"]');
         const phoneInput = document.getElementById('customerPhone');
-        const phoneLabel = document.getElementById('phoneLabel');
         
         if (phoneContact && phoneContact.checked) {
             phoneInput.required = true;
-            phoneLabel.textContent = 'Téléphone *';
         } else {
             phoneInput.required = false;
-            phoneLabel.textContent = 'Téléphone';
-        }
-    }
-    function toggleAddressField() {
-        const postalDelivery = document.querySelector('input[name="delivery"][value="postal"]');
-        const addressField = document.getElementById('addressField');
-        const addressTextarea = document.getElementById('customerAddress');
-        
-        if (postalDelivery && postalDelivery.checked) {
-            addressField.style.display = 'block';
-            addressTextarea.required = true;
-        } else {
-            addressField.style.display = 'none';
-            addressTextarea.required = false;
-            addressTextarea.value = '';
         }
     }
 
-    // Gestion du champ "Autre" pour la découverte
     function toggleAutreField() {
         const autreRadio = document.querySelector('input[name="discovery"][value="autre"]');
         const autreField = document.getElementById('autreField');
@@ -738,14 +703,11 @@
         }
     }
 
-    // Gestion de la soumission du formulaire
     function handleSubmit(e) {
         e.preventDefault();
         
         const currency = document.querySelector('input[name="currency"]:checked').value;
-        const customerName = document.getElementById('customerName').value;
         
-        // Calculer le total et les détails pour l'email
         let grandTotal = 0;
         let orderDetails = '';
         
@@ -760,52 +722,37 @@
             }
         }
         
-        // Remplir les champs cachés pour Formspree
         document.getElementById('hiddenCurrency').value = currency;
         document.getElementById('hiddenTotal').value = formatPrice(grandTotal, currency);
         document.getElementById('hiddenDetails').value = orderDetails;
         
-        // Vérifier qu'au moins un livre est commandé
         if (grandTotal === 0) {
             alert('Veuillez sélectionner au moins un livre avant de finaliser votre pré-commande.');
             return false;
         }
         
-        // Si tout est correct, soumettre le formulaire
         e.target.submit();
     }
 
-    // Gestionnaires d'événements
     document.addEventListener('DOMContentLoaded', function() {
-        // Événements pour les devises
         document.querySelectorAll('input[name="currency"]').forEach(radio => {
             radio.addEventListener('change', updatePrices);
         });
 
-        // Événements pour les quantités
         document.querySelectorAll('.quantity-input').forEach(input => {
             input.addEventListener('input', calculateTotals);
         });
 
-        // Événements pour les modes de contact
         document.querySelectorAll('input[name="contact"]').forEach(radio => {
             radio.addEventListener('change', togglePhoneField);
         });
 
-        // Événements pour les modes de livraison
-        document.querySelectorAll('input[name="delivery"]').forEach(radio => {
-            radio.addEventListener('change', toggleAddressField);
-        });
-
-        // Événements pour le champ "Autre" de découverte
         document.querySelectorAll('input[name="discovery"]').forEach(radio => {
             radio.addEventListener('change', toggleAutreField);
         });
 
-        // Événement pour la soumission du formulaire
         document.getElementById('bookOrderForm').addEventListener('submit', handleSubmit);
 
-        // Initialisation
         updatePrices();
     });
 </script>
