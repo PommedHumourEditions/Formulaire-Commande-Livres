@@ -441,20 +441,7 @@
             </div>
         </div>
 
-        <!-- Sélection de devise -->
-        <div class="currency-selector">
-            <h3>💱 Devise préférée</h3>
-            <div class="currency-options">
-                <div class="currency-option">
-                    <input type="radio" id="kmf" name="currency" value="KMF" checked>
-                    <label for="kmf">🇰🇲 Francs Comoriens (KMF)</label>
-                </div>
-                <div class="currency-option">
-                    <input type="radio" id="eur" name="currency" value="EUR">
-                    <label for="eur">🇪🇺 Euros (€)</label>
-                </div>
-            </div>
-        </div>
+
 
         <!-- Section des livres -->
         <div class="books-section">
@@ -466,13 +453,13 @@
                     <div class="book-info">
                         <div class="book-header">
                             <div class="book-title">MAIMBIYO</div>
-                            <div class="book-price" id="price1">13 500 KMF</div>
+                            <div class="book-price">27,50 €</div>
                         </div>
                         <div class="quantity-section">
                             <label for="qty1">Quantité :</label>
                             <input type="number" id="qty1" name="quantite_maimbiyo" class="quantity-input" min="0" max="99" value="0">
                         </div>
-                        <div class="subtotal" id="subtotal1">Sous-total : 0 KMF</div>
+                        <div class="subtotal" id="subtotal1">Sous-total : 0,00 €</div>
                     </div>
                 </div>
             </div>
@@ -485,13 +472,13 @@
                     <div class="book-info">
                         <div class="book-header">
                             <div class="book-title">IDI MBARAKA</div>
-                            <div class="book-price" id="price2">6 000 KMF</div>
+                            <div class="book-price">12,50 €</div>
                         </div>
                         <div class="quantity-section">
                             <label for="qty2">Quantité :</label>
                             <input type="number" id="qty2" name="quantite_idi_mbaraka" class="quantity-input" min="0" max="99" value="0">
                         </div>
-                        <div class="subtotal" id="subtotal2">Sous-total : 0 KMF</div>
+                        <div class="subtotal" id="subtotal2">Sous-total : 0,00 €</div>
                     </div>
                 </div>
             </div>
@@ -504,22 +491,33 @@
                     <div class="book-info">
                         <div class="book-header">
                             <div class="book-title">DJIMBO NA COMPTINES</div>
-                            <div class="book-price" id="price3">11 000 KMF</div>
+                            <div class="book-price">22,00 €</div>
                         </div>
                         <div class="quantity-section">
                             <label for="qty3">Quantité :</label>
                             <input type="number" id="qty3" name="quantite_djimbo" class="quantity-input" min="0" max="99" value="0">
                         </div>
-                        <div class="subtotal" id="subtotal3">Sous-total : 0 KMF</div>
+                        <div class="subtotal" id="subtotal3">Sous-total : 0,00 €</div>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- Section Frais de livraison -->
+        <div class="shipping-section" style="background: #fff3cd; padding: 20px; border-radius: 15px; margin-bottom: 20px; border: 2px solid #ffc107;">
+            <h3 style="color: #856404; margin-bottom: 10px;">📦 Frais de livraison</h3>
+            <div style="font-size: 1.2em; font-weight: 600; color: #856404;" id="shippingAmount">0,00 €</div>
+            <div style="font-size: 0.9em; color: #856404; margin-top: 5px;">Calculés automatiquement selon le poids de votre commande</div>
+        </div>
+
         <!-- Section Total -->
         <div class="total-section">
             <h3>💰 Total de la pré-commande</h3>
-            <div class="total-amount" id="totalAmount">0 KMF</div>
+            <div style="font-size: 1.5em; margin-bottom: 5px;">Livres : <span id="booksTotal">0,00 €</span></div>
+            <div style="font-size: 1.5em; margin-bottom: 10px;">Livraison : <span id="shippingTotal">0,00 €</span></div>
+            <div style="border-top: 2px solid rgba(255,255,255,0.3); padding-top: 10px; margin-top: 10px;">
+                <div class="total-amount" id="totalAmount">0,00 €</div>
+            </div>
         </div>
 
         <!-- MODE DE PAIEMENT -->
@@ -544,6 +542,13 @@
                     </label>
                 </div>
             </div>
+            
+            <!-- Message PayPal qui s'affiche uniquement si PayPal est sélectionné -->
+            <div class="form-group" id="paypalInfo" style="display: none; margin-top: 20px; background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;">
+                <p style="margin: 0; color: #1565c0; font-weight: 500;">
+                    📧 Le règlement par PayPal sera à réaliser à l'adresse suivante : <strong>nassera.nahouza@gmail.com</strong>
+                </p>
+            </div>
         </div>
 
         <div class="customer-info">
@@ -564,62 +569,9 @@
             </div>
         </div>
 
-        <div class="customer-info">
-            <h3>🆕 Êtes-vous un nouveau client ?</h3>
-            <div class="form-group">
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="newClient" value="nouveau" required>
-                        <span class="radio-custom"></span>
-                        🎉 Oui, c'est ma première fois !
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="newClient" value="retour" required>
-                        <span class="radio-custom"></span>
-                        🔄 Non, je suis de retour !
-                    </label>
-                </div>
-            </div>
-        </div>
 
-        <div class="customer-info">
-            <h3>🔍 Comment nous connaissez-vous ?</h3>
-            <div class="form-group">
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="discovery" value="reseaux" required>
-                        <span class="radio-custom"></span>
-                        📱 Les réseaux sociaux
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="discovery" value="bouche-oreille" required>
-                        <span class="radio-custom"></span>
-                        👨‍👩‍👧‍👦 Le bouche à oreille (amis/famille)
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="discovery" value="evenement" required>
-                        <span class="radio-custom"></span>
-                        🎭 Événement culturel
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="discovery" value="librairie-decouverte" required>
-                        <span class="radio-custom"></span>
-                        📚 Librairie
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="discovery" value="autre" required>
-                        <span class="radio-custom"></span>
-                        ✨ Autre :
-                    </label>
-                </div>
-                <div class="form-group" id="autreField" style="display: none; margin-top: 15px;">
-                    <input type="text" id="autreDetail" name="decouverte_autre" placeholder="Précisez...">
-                </div>
-            </div>
-        </div>
 
         <!-- Champs cachés pour Formspree -->
-        <input type="hidden" name="devise_choisie" id="hiddenCurrency">
         <input type="hidden" name="total_commande" id="hiddenTotal">
         <input type="hidden" name="detail_commande" id="hiddenDetails">
 
@@ -629,46 +581,62 @@
 
 <script>
     const books = {
-        1: { titleFR: 'MAIMBIYO', kmf: 13500, eur: 27.50 },
-        2: { titleFR: 'IDI MBARAKA', kmf: 6000, eur: 12.50 },
-        3: { titleFR: 'DJIMBO NA COMPTINES', kmf: 11000, eur: 22 }
+        1: { titleFR: 'MAIMBIYO', price: 27.50, weight: 400 },
+        2: { titleFR: 'IDI MBARAKA', price: 12.50, weight: 120 },
+        3: { titleFR: 'DJIMBO NA COMPTINES', price: 22.00, weight: 200 }
     };
 
-    function formatPrice(price, currency) {
-        if (currency === 'KMF') {
-            return new Intl.NumberFormat('fr-FR').format(price) + ' KMF';
-        } else {
-            return price.toFixed(2).replace('.', ',') + ' €';
-        }
+    function formatPrice(price) {
+        return price.toFixed(2).replace('.', ',') + ' €';
     }
 
-    function updatePrices() {
-        const currency = document.querySelector('input[name="currency"]:checked').value;
-        
-        for (let i = 1; i <= 3; i++) {
-            const price = currency === 'KMF' ? books[i].kmf : books[i].eur;
-            document.getElementById(`price${i}`).textContent = formatPrice(price, currency);
+    function calculateShipping(totalWeight, hasMaimbiyo) {
+        const envelopeCost = hasMaimbiyo ? 0.60 : 0.50;
+        let stampCost = 0;
+
+        if (totalWeight === 0) {
+            return 0;
+        } else if (totalWeight >= 100 && totalWeight <= 250) {
+            stampCost = 4.71;
+        } else if (totalWeight >= 251 && totalWeight <= 500) {
+            stampCost = 6.55;
+        } else if (totalWeight >= 501 && totalWeight <= 2000) {
+            stampCost = 8.30;
+        } else if (totalWeight > 2000) {
+            stampCost = 10.05;
         }
-        
-        calculateTotals();
+
+        return envelopeCost + stampCost;
     }
 
     function calculateTotals() {
-        const currency = document.querySelector('input[name="currency"]:checked').value;
         let grandTotal = 0;
+        let totalWeight = 0;
+        let hasMaimbiyo = false;
 
         for (let i = 1; i <= 3; i++) {
             const quantity = parseInt(document.getElementById(`qty${i}`).value) || 0;
-            const price = currency === 'KMF' ? books[i].kmf : books[i].eur;
+            const price = books[i].price;
             const subtotal = quantity * price;
             
             document.getElementById(`subtotal${i}`).textContent = 
-                `Sous-total : ${formatPrice(subtotal, currency)}`;
+                `Sous-total : ${formatPrice(subtotal)}`;
             
             grandTotal += subtotal;
+            totalWeight += quantity * books[i].weight;
+            
+            if (i === 1 && quantity > 0) {
+                hasMaimbiyo = true;
+            }
         }
 
-        document.getElementById('totalAmount').textContent = formatPrice(grandTotal, currency);
+        const shippingCost = calculateShipping(totalWeight, hasMaimbiyo);
+        const finalTotal = grandTotal + shippingCost;
+
+        document.getElementById('shippingAmount').textContent = formatPrice(shippingCost);
+        document.getElementById('shippingTotal').textContent = formatPrice(shippingCost);
+        document.getElementById('booksTotal').textContent = formatPrice(grandTotal);
+        document.getElementById('totalAmount').textContent = formatPrice(finalTotal);
         
         const submitBtn = document.querySelector('.submit-btn');
         if (grandTotal > 0) {
@@ -691,39 +659,48 @@
         }
     }
 
-    function toggleAutreField() {
-        const autreRadio = document.querySelector('input[name="discovery"][value="autre"]');
-        const autreField = document.getElementById('autreField');
+    function togglePaypalInfo() {
+        const paypalRadio = document.querySelector('input[name="payment"][value="paypal"]');
+        const paypalInfo = document.getElementById('paypalInfo');
         
-        if (autreRadio && autreRadio.checked) {
-            autreField.style.display = 'block';
+        if (paypalRadio && paypalRadio.checked) {
+            paypalInfo.style.display = 'block';
         } else {
-            autreField.style.display = 'none';
-            document.getElementById('autreDetail').value = '';
+            paypalInfo.style.display = 'none';
         }
     }
 
     function handleSubmit(e) {
         e.preventDefault();
         
-        const currency = document.querySelector('input[name="currency"]:checked').value;
-        
         let grandTotal = 0;
+        let totalWeight = 0;
+        let hasMaimbiyo = false;
         let orderDetails = '';
         
         for (let i = 1; i <= 3; i++) {
             const quantity = parseInt(document.getElementById(`qty${i}`).value) || 0;
             if (quantity > 0) {
-                const price = currency === 'KMF' ? books[i].kmf : books[i].eur;
+                const price = books[i].price;
                 const subtotal = quantity * price;
                 grandTotal += subtotal;
+                totalWeight += quantity * books[i].weight;
                 
-                orderDetails += `${books[i].titleFR}: ${quantity} x ${formatPrice(price, currency)} = ${formatPrice(subtotal, currency)}\n`;
+                if (i === 1) {
+                    hasMaimbiyo = true;
+                }
+                
+                orderDetails += `${books[i].titleFR}: ${quantity} x ${formatPrice(price)} = ${formatPrice(subtotal)}\n`;
             }
         }
+
+        const shippingCost = calculateShipping(totalWeight, hasMaimbiyo);
+        const finalTotal = grandTotal + shippingCost;
         
-        document.getElementById('hiddenCurrency').value = currency;
-        document.getElementById('hiddenTotal').value = formatPrice(grandTotal, currency);
+        orderDetails += `\nFrais de livraison: ${formatPrice(shippingCost)}`;
+        orderDetails += `\n\nTOTAL GÉNÉRAL: ${formatPrice(finalTotal)}`;
+        
+        document.getElementById('hiddenTotal').value = formatPrice(finalTotal);
         document.getElementById('hiddenDetails').value = orderDetails;
         
         if (grandTotal === 0) {
@@ -735,10 +712,6 @@
     }
 
     document.addEventListener('DOMContentLoaded', function() {
-        document.querySelectorAll('input[name="currency"]').forEach(radio => {
-            radio.addEventListener('change', updatePrices);
-        });
-
         document.querySelectorAll('.quantity-input').forEach(input => {
             input.addEventListener('input', calculateTotals);
         });
@@ -747,13 +720,13 @@
             radio.addEventListener('change', togglePhoneField);
         });
 
-        document.querySelectorAll('input[name="discovery"]').forEach(radio => {
-            radio.addEventListener('change', toggleAutreField);
+        document.querySelectorAll('input[name="payment"]').forEach(radio => {
+            radio.addEventListener('change', togglePaypalInfo);
         });
 
         document.getElementById('bookOrderForm').addEventListener('submit', handleSubmit);
 
-        updatePrices();
+        calculateTotals();
     });
 </script>
 ```
