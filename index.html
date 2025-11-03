@@ -520,35 +520,11 @@
             </div>
         </div>
 
-        <!-- MODE DE PAIEMENT -->
-        <div class="customer-info">
-            <h3>💳 Mode de paiement souhaité</h3>
-            <div class="form-group">
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="payment" value="mvola" required>
-                        <span class="radio-custom"></span>
-                        📱 Mvola
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="payment" value="money-transfer" required>
-                        <span class="radio-custom"></span>
-                        💸 MoneyGram / Western Union
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="payment" value="paypal" required>
-                        <span class="radio-custom"></span>
-                        💰 PayPal
-                    </label>
-                </div>
-            </div>
-            
-            <!-- Message PayPal qui s'affiche uniquement si PayPal est sélectionné -->
-            <div class="form-group" id="paypalInfo" style="display: none; margin-top: 20px; background: #e3f2fd; padding: 15px; border-radius: 10px; border-left: 4px solid #2196f3;">
-                <p style="margin: 0; color: #1565c0; font-weight: 500;">
-                    📧 Le règlement par PayPal sera à réaliser à l'adresse suivante : <strong>nassera.nahouza@gmail.com</strong>
-                </p>
-            </div>
+        <!-- Instructions de paiement PayPal -->
+        <div style="background: #e3f2fd; padding: 20px; border-radius: 15px; margin-bottom: 30px; border: 2px solid #2196f3; text-align: center;">
+            <p style="margin: 0; color: #1565c0; font-weight: 700; font-size: 1.1em; line-height: 1.6;">
+                Si ce total vous convient, merci de réaliser le paiement via PayPal à l'adresse suivante : <strong>nassera.nahouza@gmail.com</strong>, après avoir validé votre commande.
+            </p>
         </div>
 
         <div class="customer-info">
@@ -659,17 +635,6 @@
         }
     }
 
-    function togglePaypalInfo() {
-        const paypalRadio = document.querySelector('input[name="payment"][value="paypal"]');
-        const paypalInfo = document.getElementById('paypalInfo');
-        
-        if (paypalRadio && paypalRadio.checked) {
-            paypalInfo.style.display = 'block';
-        } else {
-            paypalInfo.style.display = 'none';
-        }
-    }
-
     function handleSubmit(e) {
         e.preventDefault();
         
@@ -718,10 +683,6 @@
 
         document.querySelectorAll('input[name="contact"]').forEach(radio => {
             radio.addEventListener('change', togglePhoneField);
-        });
-
-        document.querySelectorAll('input[name="payment"]').forEach(radio => {
-            radio.addEventListener('change', togglePaypalInfo);
         });
 
         document.getElementById('bookOrderForm').addEventListener('submit', handleSubmit);
